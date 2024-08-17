@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcyb1o54umj0y"]
+
+[ext_resource type="Texture2D" uid="uid://pvsxxws7kdxm" path="res://scenes/Projectile1.png" id="1_jm3bj"]
+
+[sub_resource type="GDScript" id="GDScript_7q7ju"]
+script/source = "extends Node2D
+
+@export var PROJECTILE_SPEED = 300
+@onready var path_follow : PathFollow2D = $Projectile_path/PathFollow2D
+
+func _physics_process(delta):
+	path_follow.progress += PROJECTILE_SPEED * delta
+
+func _on_projectile_1_body_entered(body):
+	queue_free()
+"
+
+[sub_resource type="Curve2D" id="Curve2D_uf2u2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -76, 74, 0, 0, 0, 0, 54, 121, 0, 0, 0, 0, -77, 202, 0, 0, 0, 0, 60, 250, 0, 0, 0, 0, -73, 338, 0, 0, 0, 0, 56, 392, 0, 0, 0, 0, -69, 490, 0, 0, 0, 0, 54, 557, 0, 0, 0, 0, -67, 645)
+}
+point_count = 10
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yqv7q"]
+radius = 44.4722
+
+[node name="Projectile1" type="Node2D"]
+script = SubResource("GDScript_7q7ju")
+
+[node name="Projectile_path" type="Path2D" parent="."]
+position = Vector2(2, 0)
+curve = SubResource("Curve2D_uf2u2")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Projectile_path"]
+rotation = 2.36953
+loop = false
+
+[node name="Projectile1" type="Area2D" parent="Projectile_path/PathFollow2D"]
+
+[node name="Projectile1_collision" type="CollisionShape2D" parent="Projectile_path/PathFollow2D/Projectile1"]
+visibility_layer = 3
+position = Vector2(1.43294, 1.39523)
+rotation = -2.36953
+scale = Vector2(0.3, 0.3)
+shape = SubResource("CircleShape2D_yqv7q")
+
+[node name="Projectile1_sprite" type="Sprite2D" parent="Projectile_path/PathFollow2D/Projectile1"]
+rotation = -2.33294
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_jm3bj")
+
+[connection signal="body_entered" from="Projectile_path/PathFollow2D/Projectile1" to="." method="_on_projectile_1_body_entered"]

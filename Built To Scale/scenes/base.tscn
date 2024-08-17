@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://davs63vmy1itf"]
+[gd_scene load_steps=6 format=3 uid="uid://davs63vmy1itf"]
 
+[ext_resource type="PackedScene" uid="uid://dei5agkm5rott" path="res://scenes/background.tscn" id="1_jgfnt"]
 [ext_resource type="Script" path="res://Player.gd" id="1_trs6d"]
 [ext_resource type="Texture2D" uid="uid://cmqy0d54y6ka0" path="res://icon.svg" id="2_dbkyg"]
 [ext_resource type="TileSet" uid="uid://w67l1ot7tq2i" path="res://map/level_tile.tres" id="3_fh3qd"]
@@ -11,6 +12,9 @@ size = Vector2(113, 119)
 position = Vector2(-2, 1)
 
 [node name="Level" type="Node" parent="."]
+
+[node name="Background" parent="Level" instance=ExtResource("1_jgfnt")]
+position = Vector2(-749, -587)
 
 [node name="Player" type="CharacterBody2D" parent="Level"]
 position = Vector2(-2, 1)

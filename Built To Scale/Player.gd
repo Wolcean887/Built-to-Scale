@@ -41,3 +41,6 @@ func _on_dash_timer_timeout():
 	
 func _on_can_dash_timer_timeout():
 	can_dash = true
+
+func _on_projectile_1_body_entered(body):
+	print("You have been shot!")

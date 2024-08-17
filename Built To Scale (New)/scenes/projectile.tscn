@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcyb1o54umj0y"]
+
+[ext_resource type="Texture2D" uid="uid://pvsxxws7kdxm" path="res://scenes/Projectile.png" id="1_jm3bj"]
+
+[sub_resource type="GDScript" id="GDScript_7q7ju"]
+script/source = "extends Node2D
+
+@export var PROJECTILE_SPEED = 300
+@onready var path_follow : PathFollow2D = $Projectile_path/PathFollow2D
+
+func _physics_process(delta):
+	path_follow.progress += PROJECTILE_SPEED * delta
+
+func _on_projectile_body_entered(_body):
+	print(\"You have been shot!\")
+	queue_free()
+"
+
+[sub_resource type="Curve2D" id="Curve2D_uf2u2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -2, 1, 0, 0, 0, 0, -76, 74, 0, 0, 0, 0, 54, 121, 0, 0, 0, 0, -77, 202, 0, 0, 0, 0, 60, 250, 0, 0, 0, 0, -73, 338, 0, 0, 0, 0, 56, 392, 0, 0, 0, 0, -69, 490, 0, 0, 0, 0, 54, 557, 0, 0, 0, 0, -68, 647, 0, 0, 0, 0, 39, 689, 0, 0, 0, 0, 59, 694, 0, 0, 0, 0, -67, 789, 0, 0, 0, 0, 52, 862, 0, 0, 0, 0, -76, 953, 0, 0, 0, 0, 52, 1061, 0, 0, 0, 0, -76.0001, 1144)
+}
+point_count = 17
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yqv7q"]
+radius = 44.4722
+
+[node name="Projectile" type="Node2D"]
+script = SubResource("GDScript_7q7ju")
+
+[node name="Projectile_path" type="Path2D" parent="."]
+position = Vector2(2, 0)
+rotation = -1.5708
+curve = SubResource("Curve2D_uf2u2")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Projectile_path"]
+position = Vector2(-2, 1)
+rotation = 2.363
+loop = false
+
+[node name="Projectile" type="Area2D" parent="Projectile_path/PathFollow2D"]
+
+[node name="Projectile_collision" type="CollisionShape2D" parent="Projectile_path/PathFollow2D/Projectile"]
+visibility_layer = 3
+position = Vector2(1.43294, 1.39523)
+rotation = -2.36953
+scale = Vector2(0.3, 0.3)
+shape = SubResource("CircleShape2D_yqv7q")
+
+[node name="Projectile_sprite" type="Sprite2D" parent="Projectile_path/PathFollow2D/Projectile"]
+rotation = -2.33294
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_jm3bj")
+
+[connection signal="body_entered" from="Projectile_path/PathFollow2D/Projectile" to="." method="_on_projectile_body_entered"]

@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://b01ltrqpm3xho" path="res://map/background_sprite_test.png" id="1_qklf0"]
 
 [sub_resource type="Gradient" id="Gradient_nhttv"]
-offsets = PackedFloat32Array(0, 0.350649, 0.694805, 1)
-colors = PackedColorArray(0.397261, 0.401128, 0.36449, 1, 0.296243, 0.327367, 0.325943, 1, 0.107423, 0.133878, 0.177349, 1, 0.0461847, 0.0711242, 0.129156, 1)
+offsets = PackedFloat32Array(0, 0.396104, 1)
+colors = PackedColorArray(0.397261, 0.401128, 0.36449, 1, 0.147737, 0.163672, 0.18622, 1, 0.0461847, 0.0711242, 0.129156, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_0fem2"]
 gradient = SubResource("Gradient_nhttv")

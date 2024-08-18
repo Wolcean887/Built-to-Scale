@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://davs63vmy1itf"]
+[gd_scene load_steps=10 format=3 uid="uid://davs63vmy1itf"]
 
 [ext_resource type="PackedScene" uid="uid://dei5agkm5rott" path="res://scenes/background.tscn" id="1_jgfnt"]
-[ext_resource type="Script" path="res://Player.gd" id="1_trs6d"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_trs6d"]
 [ext_resource type="Texture2D" uid="uid://cmqy0d54y6ka0" path="res://icon.svg" id="2_dbkyg"]
 [ext_resource type="TileSet" uid="uid://w67l1ot7tq2i" path="res://map/level_tile.tres" id="3_fh3qd"]
-[ext_resource type="PackedScene" uid="uid://dw4pq1v1r550y" path="res://scenes/projectile_spawn.tscn" id="5_lv5pq"]
+[ext_resource type="Script" path="res://scripts/Checkpoint.gd" id="6_nsfyd"]
+[ext_resource type="PackedScene" uid="uid://bfjv8vcgy7026" path="res://scenes/checkpoint.tscn" id="6_obh8x"]
+[ext_resource type="PackedScene" uid="uid://bcyb1o54umj0y" path="res://scenes/projectile.tscn" id="7_y3sj4"]
+[ext_resource type="Script" path="res://scripts/projectile.gd" id="8_a78lf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xo52q"]
 size = Vector2(113, 119)
@@ -15,11 +18,19 @@ position = Vector2(-2, 1)
 [node name="Level" type="Node" parent="."]
 
 [node name="Background" parent="Level" instance=ExtResource("1_jgfnt")]
-position = Vector2(-749, -587)
+position = Vector2(-83, -6588)
+
+[node name="Background_sprite_back" parent="Level/Background" index="0"]
+position = Vector2(7.50041, 2.49927)
+scale = Vector2(41.7278, 61.4326)
+
+[node name="Background_sprite_cogs" parent="Level/Background" index="1"]
+position = Vector2(0, 18)
+region_rect = Rect2(0, 0, 15000, 30000)
 
 [node name="Player" type="CharacterBody2D" parent="Level"]
-position = Vector2(303, 333)
-collision_mask = 7
+position = Vector2(-1721, 315)
+collision_mask = 6
 floor_stop_on_slope = false
 script = ExtResource("1_trs6d")
 JUMP_VELOCITY = -800.0
@@ -33,6 +44,10 @@ shape = SubResource("RectangleShape2D_xo52q")
 
 [node name="Player_camera" type="Camera2D" parent="Level/Player"]
 zoom = Vector2(0.6, 0.6)
+limit_left = -1905
+limit_right = 1776
+limit_bottom = 496
+limit_smoothed = true
 
 [node name="Dash_Ability" type="Node2D" parent="Level/Player"]
 
@@ -48,12 +63,21 @@ one_shot = true
 tile_set = ExtResource("3_fh3qd")
 format = 2
 layer_0/name = "Platforms"
-layer_0/tile_data = PackedInt32Array(196609, 131073, 0, 196610, 131073, 0, 196611, 131073, 0, 196612, 131073, 0, 196608, 131073, 0, 262143, 131073, 0, 196617, 196609, 0, 196616, 131073, 0, 196615, 131073, 0, 196614, 131073, 0, 196613, 131073, 0, 262142, 131073, 0, 262141, 131073, 0, 262140, 65537, 0)
+layer_0/tile_data = PackedInt32Array(196609, 131073, 0, 196610, 131073, 0, 196611, 131073, 0, 196612, 131073, 0, 196608, 131073, 0, 262143, 131073, 0, 196617, 131073, 0, 196616, 131073, 0, 196615, 131073, 0, 196614, 131073, 0, 196613, 131073, 0, 262142, 131073, 0, 262141, 131073, 0, 262140, 131073, 0, 196621, 196609, 3, 196620, 131073, 0, 196619, 131073, 0, 196618, 131073, 0, 131085, 1, 2, 65549, 1, 2, 13, 1, 2, -65523, 1, 2, -131059, 1, 2, -196595, 1, 2, -262131, 1, 2, -327667, 1, 2, -393203, 1, 2, -458739, 1, 2, -524275, 1, 2, -589811, 1, 2, -655347, 1, 2, -720883, 1, 2, 262139, 131073, 0, 262138, 131073, 0, 262137, 131073, 0, 262136, 131073, 0, 262135, 131073, 0, 262134, 131073, 0, 262133, 131073, 0, 262132, 131073, 0, 262131, 131073, 0, 262130, 131073, 0, 262129, 131073, 0, 65521, 1, 2, -15, 1, 2, -65551, 1, 2, -131087, 1, 2, -196623, 1, 2, -262159, 1, 2, -327695, 1, 2, -393231, 1, 2, -458767, 1, 2, -524303, 1, 2, -589839, 1, 2, -655375, 1, 2, -720911, 1, 2, 131057, 196609, 3, 262128, 131073, 0, 262127, 131073, 0, 131056, 131073, 0, 131055, 131073, 0, 131054, 131073, 0, 262126, 131073, 0, 131053, 131073, 0, 262125, 131073, 0, 131052, 65537, 0, 262124, 65537, 0)
 
-[node name="Projectile_Spawn" parent="Level" instance=ExtResource("5_lv5pq")]
-position = Vector2(-464, 339)
+[node name="Checkpoint" parent="Level" instance=ExtResource("6_obh8x")]
+position = Vector2(1530, 336)
+script = ExtResource("6_nsfyd")
+
+[node name="Projectile" parent="Level" instance=ExtResource("7_y3sj4")]
+position = Vector2(-1556, 195)
+script = ExtResource("8_a78lf")
 
 [connection signal="timeout" from="Level/Player/Dash_Ability/Dash_Timer" to="Level/Player" method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="Level/Player/Dash_Ability/Can_Dash_Timer" to="Level/Player" method="_on_can_dash_timer_timeout"]
+[connection signal="new_checkpoint" from="Level/Checkpoint" to="Level/Player" method="_on_checkpoint_new_checkpoint"]
+[connection signal="body_entered" from="Level/Projectile" to="Level/Player" method="_on_projectile_body_entered"]
+[connection signal="body_entered" from="Level/Projectile" to="Level/Projectile" method="_on_body_entered"]
 
-[editable path="Level/Projectile_Spawn"]
+[editable path="Level/Background"]
+[editable path="Level/Projectile"]

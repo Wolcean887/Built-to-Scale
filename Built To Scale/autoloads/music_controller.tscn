@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://belv2unf7ofia"]
-
-[ext_resource type="Script" path="res://autoloads/music_controller.gd" id="1_a2our"]
-
-[node name="MusicController" type="Node"]
-script = ExtResource("1_a2our")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

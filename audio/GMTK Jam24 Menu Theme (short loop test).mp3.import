@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://3o16ayje5fju"
+path="res://.godot/imported/GMTK Jam24 Menu Theme (short loop test).mp3-092a16d3bd1bcdcd338cc17eb1786c6b.mp3str"
+
+[deps]
+
+source_file="res://audio/GMTK Jam24 Menu Theme (short loop test).mp3"
+dest_files=["res://.godot/imported/GMTK Jam24 Menu Theme (short loop test).mp3-092a16d3bd1bcdcd338cc17eb1786c6b.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0
+beat_count=0
+bar_beats=4

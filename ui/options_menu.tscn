@@ -1,0 +1,160 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdtkm18llc8yf"]
+
+[ext_resource type="Script" path="res://ui/options_menu.gd" id="1_gx3jq"]
+
+[node name="OptionsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gx3jq")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="Sound" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Sound"
+horizontal_alignment = 1
+
+[node name="SoundGridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 5
+columns = 2
+
+[node name="VolumeLabel" type="Label" parent="MarginContainer/VBoxContainer/SoundGridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Volume"
+
+[node name="VolumeSlider" type="HSlider" parent="MarginContainer/VBoxContainer/SoundGridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.01
+
+[node name="MusicLabel" type="Label" parent="MarginContainer/VBoxContainer/SoundGridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="MarginContainer/VBoxContainer/SoundGridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.01
+
+[node name="SFXLabel" type="Label" parent="MarginContainer/VBoxContainer/SoundGridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Sound Effects"
+
+[node name="SFXSlider" type="HSlider" parent="MarginContainer/VBoxContainer/SoundGridContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.01
+
+[node name="Controls" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Controls"
+horizontal_alignment = 1
+
+[node name="GridContainer2" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/h_separation = 80
+theme_override_constants/v_separation = 5
+columns = 2
+
+[node name="Left" type="Label" parent="MarginContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Left"
+
+[node name="Left2" type="Label" parent="MarginContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Left Button  or  A"
+horizontal_alignment = 2
+
+[node name="Right" type="Label" parent="MarginContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Right"
+
+[node name="Right2" type="Label" parent="MarginContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Right Button  or  D"
+horizontal_alignment = 2
+
+[node name="Jump" type="Label" parent="MarginContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Jump"
+
+[node name="Jump2" type="Label" parent="MarginContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Up Button  or  W  or  Space Bar"
+horizontal_alignment = 2
+
+[node name="Dash" type="Label" parent="MarginContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Dash"
+
+[node name="Dash2" type="Label" parent="MarginContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Shift"
+horizontal_alignment = 2
+
+[node name="Pause" type="Label" parent="MarginContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Pause"
+
+[node name="Pause2" type="Label" parent="MarginContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Esc  or  P"
+horizontal_alignment = 2
+
+[node name="Return" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 30
+text = "Return"
+
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/SoundGridContainer/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/SoundGridContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/SoundGridContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Return" to="." method="_on_return_pressed"]

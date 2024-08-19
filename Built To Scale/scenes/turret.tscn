@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://csis7301o02jg"]
+
+[ext_resource type="Script" path="res://scripts/turret.gd" id="1_iesvk"]
+[ext_resource type="Texture2D" uid="uid://c8tsnbyujoysm" path="res://scenes/Turret.png" id="2_lc3ta"]
+
+[node name="Turret" type="Node2D"]
+script = ExtResource("1_iesvk")
+
+[node name="Turret_Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_lc3ta")
+
+[node name="Turret_Shoot" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Turret_Shoot" to="." method="_on_turret_shoot_timeout"]
